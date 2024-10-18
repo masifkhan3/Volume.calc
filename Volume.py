@@ -1,8 +1,8 @@
 import streamlit as st
 import math
 
+# Function to calculate volume based on shape and dimensions
 def calculate_volume(shape, dimensions):
-    """Calculate the volume of a given shape based on its dimensions."""
     if shape == 'Cylinder':
         r = dimensions['radius']
         h = dimensions['height']
@@ -54,57 +54,69 @@ def calculate_volume(shape, dimensions):
 
 # Streamlit app
 def main():
-    st.title("🌈 Volume Calculator for Colorful Shapes 🌈")
-    
-    # Shape selection
-    shape = st.selectbox("Select a shape:", 
-                         ['Cylinder', 'Cone', 'Sphere', 
-                          'Rectangular Prism', 'Cube', 'Pyramid',
-                          'Tetrahedron', 'Ellipsoid', 'Triangular Prism'])
+    st.title("🌈 Volume Calculator for Colorful Geometric Shapes 🌈")
+    st.markdown(
+        """
+        Welcome to the Volume Calculator! 
+        Choose a shape below to calculate its volume.
+        """
+    )
+
+    # Shape selection with a sidebar layout
+    st.sidebar.header("Select a Shape")
+    shape = st.sidebar.selectbox(
+        "Choose a geometric shape:", 
+        ['Cylinder', 'Cone', 'Sphere', 
+         'Rectangular Prism', 'Cube', 'Pyramid',
+         'Tetrahedron', 'Ellipsoid', 'Triangular Prism']
+    )
 
     dimensions = {}
     
     # Collecting input based on the shape selected
     if shape in ['Cylinder', 'Cone']:
-        dimensions['radius'] = st.number_input("Enter the radius:", min_value=0.0)
-        dimensions['height'] = st.number_input("Enter the height:", min_value=0.0)
+        dimensions['radius'] = st.sidebar.number_input("Enter the radius:", min_value=0.0)
+        dimensions['height'] = st.sidebar.number_input("Enter the height:", min_value=0.0)
 
     elif shape == 'Sphere':
-        dimensions['radius'] = st.number_input("Enter the radius:", min_value=0.0)
+        dimensions['radius'] = st.sidebar.number_input("Enter the radius:", min_value=0.0)
 
     elif shape == 'Rectangular Prism':
-        dimensions['length'] = st.number_input("Enter the length:", min_value=0.0)
-        dimensions['width'] = st.number_input("Enter the width:", min_value=0.0)
-        dimensions['height'] = st.number_input("Enter the height:", min_value=0.0)
+        dimensions['length'] = st.sidebar.number_input("Enter the length:", min_value=0.0)
+        dimensions['width'] = st.sidebar.number_input("Enter the width:", min_value=0.0)
+        dimensions['height'] = st.sidebar.number_input("Enter the height:", min_value=0.0)
 
     elif shape == 'Cube':
-        dimensions['side'] = st.number_input("Enter the length of a side:", min_value=0.0)
+        dimensions['side'] = st.sidebar.number_input("Enter the length of a side:", min_value=0.0)
 
     elif shape == 'Pyramid':
-        dimensions['base_area'] = st.number_input("Enter the base area:", min_value=0.0)
-        dimensions['height'] = st.number_input("Enter the height:", min_value=0.0)
+        dimensions['base_area'] = st.sidebar.number_input("Enter the base area:", min_value=0.0)
+        dimensions['height'] = st.sidebar.number_input("Enter the height:", min_value=0.0)
 
     elif shape == 'Tetrahedron':
-        dimensions['edge_length'] = st.number_input("Enter the edge length:", min_value=0.0)
+        dimensions['edge_length'] = st.sidebar.number_input("Enter the edge length:", min_value=0.0)
 
     elif shape == 'Ellipsoid':
-        dimensions['semi_axis_a'] = st.number_input("Enter the semi-axis length (a):", min_value=0.0)
-        dimensions['semi_axis_b'] = st.number_input("Enter the semi-axis length (b):", min_value=0.0)
-        dimensions['semi_axis_c'] = st.number_input("Enter the semi-axis length (c):", min_value=0.0)
+        dimensions['semi_axis_a'] = st.sidebar.number_input("Enter the semi-axis length (a):", min_value=0.0)
+        dimensions['semi_axis_b'] = st.sidebar.number_input("Enter the semi-axis length (b):", min_value=0.0)
+        dimensions['semi_axis_c'] = st.sidebar.number_input("Enter the semi-axis length (c):", min_value=0.0)
 
     elif shape == 'Triangular Prism':
-        dimensions['base_area'] = st.number_input("Enter the base area:", min_value=0.0)
-        dimensions['height'] = st.number_input("Enter the height:", min_value=0.0)
+        dimensions['base_area'] = st.sidebar.number_input("Enter the base area:", min_value=0.0)
+        dimensions['height'] = st.sidebar.number_input("Enter the height:", min_value=0.0)
 
-    # Calculate volume
-    if st.button("Calculate Volume"):
+    # Calculate volume button
+    if st.sidebar.button("Calculate Volume"):
         volume = calculate_volume(shape, dimensions)
         if isinstance(volume, str):
             st.error(volume)  # Print error message if shape is not recognized
         else:
-            st.success(f"The volume of the {shape} is: **{volume:.2f} cubic units**")
+            st.success(f"The volume of the **{shape}** is: **{volume:.2f} cubic units**")
 
-    st.write("Thank you for using the Volume Calculator! Have a great day!")
+    # Developer Information
+    st.markdown("---")
+    st.markdown("### Developed by: [Your Name]")
+    st.markdown("Thank you for using the Volume Calculator! Have a great day!")
 
 if __name__ == "__main__":
     main()
