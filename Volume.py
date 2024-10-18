@@ -54,7 +54,7 @@ def calculate_volume(shape, dimensions):
 
 # Streamlit app
 def main():
-    st.title("🌈 Volume Calculator for Colorful Geometric Shapes 🌈")
+    st.title("🌈 Volume Calculator for Geometric Shapes 🌈")
     st.markdown(
         """
         Welcome to the Volume Calculator! 
@@ -115,7 +115,7 @@ def main():
 
     # Developer Information
     st.markdown("---")
-    st.markdown("### Developed by: [Your Name]")
+    st.markdown("### Developed by: mak3.2")
     st.markdown("Thank you for using the Volume Calculator! Have a great day!")
 
 if __name__ == "__main__":
